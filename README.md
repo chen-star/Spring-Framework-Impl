@@ -21,12 +21,22 @@
 
 ### Bean Container & Management
 
-~~~java
-@Component
-@Controller
-@Service
-@Repository
-~~~
+**Bean Types**
+
+|  Annotation 	| 		Status 			| 
+:------------ 	| :--------------		| 
+| @Component  	| :heavy_check_mark: 	|
+| @Controller 	| :heavy_check_mark: 	|
+| @Service    	| :heavy_check_mark: 	|
+| @ Repository	| :heavy_check_mark: 	|
+
+**Bean Related**
+
+|  Annotation 	| 		Status 			| 
+:------------ 	| :--------------		| 
+| @Scope  		| :heavy_minus_sign:	|
+| @Primiary		| :heavy_minus_sign:	|
+
 
 * Store beans
 	- `ConcurrentHashMap<Class<?>, Object>`
@@ -65,10 +75,10 @@
 
 ### DI - Dependency Injection
 
-~~~java
-@Autowired
 
-~~~
+|  Annotation 	| 		Status 			| 
+:------------ 	| :--------------		| 
+| @Autowired  	| :heavy_check_mark: 	|
 
 * Steps: 
 	- get all classes in the container
