@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.alex.aop.annotation.Aspect;
 import org.alex.core.annotation.Component;
 import org.alex.core.annotation.Controller;
 import org.alex.core.annotation.Repository;
@@ -32,7 +33,7 @@ public class BeanContainer {
     private final Map<Class<?>, Object> beanMap = new ConcurrentHashMap<>();
 
     private static final List<Class<? extends Annotation>> BEAN_ANNOTATION =
-            Arrays.asList(Component.class, Controller.class, Service.class, Repository.class);
+            Arrays.asList(Component.class, Controller.class, Service.class, Repository.class, Aspect.class);
 
     @Getter
     private boolean loaded = false;
