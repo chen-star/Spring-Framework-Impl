@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.alex.aop.annotation.Aspect;
 import org.alex.aop.annotation.Order;
 import org.alex.aop.aspect.DefaultAspect;
-import org.alex.core.annotation.Controller;
 
 import java.lang.reflect.Method;
 
@@ -14,7 +13,7 @@ import java.lang.reflect.Method;
  * @since 2020-08-02 12:04
  */
 @Slf4j
-@Aspect(value = Controller.class)
+@Aspect(pointcut = "within(com.alex.controller.superadmin.*)")
 @Order(value = 10)
 public class ControllerInfoRecordAspect extends DefaultAspect {
 

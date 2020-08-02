@@ -2,6 +2,7 @@ package org.alex.aop.aspect;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.alex.aop.PointcutLocator;
 
 /**
  * @author Alex CHEN
@@ -15,4 +16,6 @@ public class AspectInfo {
     private int orderIndex;
 
     private DefaultAspect aspectObject;
+
+    private PointcutLocator pointcutLocator;
 }

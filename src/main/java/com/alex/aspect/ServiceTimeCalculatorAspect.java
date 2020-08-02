@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.alex.aop.annotation.Aspect;
 import org.alex.aop.annotation.Order;
 import org.alex.aop.aspect.DefaultAspect;
-import org.alex.core.annotation.Service;
 
 import java.lang.reflect.Method;
 
@@ -14,7 +13,7 @@ import java.lang.reflect.Method;
  * @since 2020-08-02 11:42
  */
 @Slf4j
-@Aspect(value = Service.class)
+@Aspect(pointcut = "within(org.alex.core.annotation.Component)")
 @Order(value = 0)
 public class ServiceTimeCalculatorAspect extends DefaultAspect {
 

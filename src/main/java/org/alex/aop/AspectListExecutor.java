@@ -9,6 +9,7 @@ import org.alex.util.ValidationUtil;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -42,8 +43,10 @@ public class AspectListExecutor implements MethodInterceptor {
     @Override
     public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
         Object returnValue = null;
+        collectAccurateMatchedAspectList(method);
         if (ValidationUtil.isEmpty(sortedAspectInfoList)) {
-            return null;
+            returnValue = methodProxy.invokeSuper(proxy, args);
+            return returnValue;
         }
 
         // 1. before advices
@@ -61,6 +64,19 @@ public class AspectListExecutor implements MethodInterceptor {
         }
 
         return returnValue;
+    }
+
+    private void collectAccurateMatchedAspectList(Method method) {
+        if (ValidationUtil.isEmpty(sortedAspectInfoList)) {
+            return;
+        }
+        Iterator<AspectInfo> it = sortedAspectInfoList.iterator();
+        while (it.hasNext()) {
+            AspectInfo aspectInfo = it.next();
+            if (!aspectInfo.getPointcutLocator().accurateMatches(method)) {
+                it.remove();
+            }
+        }
     }
 
     private void invokeBeforeAdvices(Method method, Object[] args) throws Throwable{

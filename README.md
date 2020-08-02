@@ -43,7 +43,7 @@
 
 	Config Files ==> Resource ==> BeanDefinition ==> DI
 	
-		    Read        Analyze		   Register
+				 Read	      Analyze		    Register
 ~~~
 					
 
@@ -170,4 +170,13 @@
 		- Dynamically generate child class to override non-final methods
 	
 		
-		
+* **AspectJ**
+	
+	- AOP implemented by Java
+	- Pointcut syntax
+	- Powerful weaving tools
+	- Spring AOP only supports Method Execution Joinpoint, whereas AspectJ supports Jointpoint including Method, Constructor, Obj, Field, etc.
+
+	
+	- `PointcutParser`: parse pointcut
+	- `PointcutExpression`: parse pointcut expression and get actual targets
