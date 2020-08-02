@@ -101,6 +101,11 @@
  	
 ## AOP
 
+|  Annotation 	| 		Status 			| 
+:------------ 	| :--------------		| 
+| @Asepct		  	| :heavy_check_mark: 	|
+| @Order			| :heavy_check_mark: 	|
+
 **Aspect Oriented Programming**: Separation of Concerns
 
 * **Why AOP**
