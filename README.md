@@ -43,7 +43,7 @@
 
 	Config Files ==> Resource ==> BeanDefinition ==> DI
 	
-				 Read	      Analyze		    Register
+		    Read        Analyze		   Register
 ~~~
 					
 
