@@ -143,9 +143,10 @@
 		
 * **Design Pattern**
 	
-	* JDK Dynamic Proxying
+	* JDK Dynamic Proxying (based on Interface)
 		
 		- JDK Dynamic Proxies allow one to create implementations of Java interfaces at runtime by the means of Reflection.
+		- Proxyed Impl class must implements interface
 
 		- Compare with Static Proxying
 		
@@ -161,7 +162,12 @@
 				3. Proxy obj calls a generic method to perform a generic action in case of each call
 				4. After the action, proxy obj delegate the call to proxyed obj.
 	
-	* CGLIB Dynamic Proxying
+	
+	* CGLIB Dynamic Proxying (based on Extension)
+		
+		- Code Generation Lib
+		- Proxyed Impl classes dont have to implement interface
+		- Dynamically generate child class to override non-final methods
 	
 		
 		
