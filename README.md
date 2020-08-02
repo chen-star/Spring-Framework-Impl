@@ -37,6 +37,15 @@
 | @Scope  		| :heavy_minus_sign:	|
 | @Primiary		| :heavy_minus_sign:	|
 
+* Container Init
+
+~~~java
+
+	Config Files ==> Resource ==> BeanDefinition ==> DI
+	
+				 Read	      Analyze		    Register
+~~~
+					
 
 * Store beans
 	- `ConcurrentHashMap<Class<?>, Object>`
@@ -87,3 +96,72 @@
 	- get the class type of this field
   	- get instance of this class
  	- use Java reflection to inject filed instance
+
+ 	
+ 	
+## AOP
+
+**Aspect Oriented Programming**: Separation of Concerns
+
+* **Why AOP**
+	
+	Most of enterprise apps have some common crosscutting concerns that are applicable to different types of modules. (Eg. logging, data validation, transaction management, etc).
+	
+	In OOP, modularity of apps is achieved by classes whereas in AOP, modularity is done with Aspects and they are configured to cut across different classes.
+	
+	
+* **Glossary**
+	- Aspect: An aspect is a class that implements enterprise apps concerns that cut across multiple classes, such as logging.
+	
+	- Join Point: A specific point in the application such as method execution, exception handling.
+	
+	- Advice: Actions taken for a particular join point.(like methods in a class)
+
+* **Usage Details**
+	
+	* Target: `@Pointcut("execution(* com.alex.service..*.*(..))")`
+	
+		Explanation:
+		
+		* `*`: any return type
+		* package name
+		* `..`: current package and its sub-packages
+		* `*`: all classes
+		* `.*`: every method
+		* `(..)`: any args or no arg
+
+	* When: (Advice)
+		- `@Before("pointCut method")` 
+		- `@After("pointCut method")` 
+		- `@Around("pointCut method")` 
+		- `@AfterReturning(pointcut = "pointCut method", returning = "returnValues")` 
+		- `@AfterThrowing(pointcut = "pointCut method", throwing = "returnValues")`
+
+		- Sequence:
+		
+		`@Around` => `@Before` => Method execution => `@Around` => `@After` => `@AfterReturning` or `@AfterThrowing`
+		
+* **Design Pattern**
+	
+	* JDK Dynamic Proxying
+		
+		- JDK Dynamic Proxies allow one to create implementations of Java interfaces at runtime by the means of Reflection.
+
+		- Compare with Static Proxying
+		
+			Let's say if we want to perform some generic actions before calling any method of any class like logging.
+			
+			- Static Proxying:
+				1. Create proxy class for each class
+				2. Implement proxy class in a way, that first it make a log entry and then delegate the call to real proxyed obj.
+			
+			- Dynamic Proxying:
+				1. Client make a call
+				2. System creates a proxy obj at runtime based on client's call
+				3. Proxy obj calls a generic method to perform a generic action in case of each call
+				4. After the action, proxy obj delegate the call to proxyed obj.
+	
+	* CGLIB Dynamic Proxying
+	
+		
+		

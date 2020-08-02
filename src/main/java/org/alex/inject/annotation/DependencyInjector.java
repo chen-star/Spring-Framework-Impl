@@ -77,7 +77,7 @@ public class DependencyInjector {
                 if (classSet.size() == 1) {
                     return classSet.iterator().next();
                 } else {
-                    throw new RuntimeException("Two or more classes implemented classes for " + fieldClass.getName());
+                    throw new RuntimeException("Two or more classes implemented for " + fieldClass.getName());
                 }
             } else {
                 Set<Class<?>> targetClass = classSet.stream()
