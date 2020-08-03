@@ -9,6 +9,11 @@ import org.alex.mvc.render.ResultRender;
  * @since 2020-08-02 21:45
  */
 public class ResourceNotFoundResultRender implements ResultRender {
+
+    public ResourceNotFoundResultRender(String method, String path) {
+
+    }
+
     @Override
     public void render(RequestProcessorChain requestProcessorChain) throws Exception {
 
