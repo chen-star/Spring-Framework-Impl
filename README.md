@@ -215,3 +215,10 @@
 			- If annotated with `@ResponseBody`, return raw JSON
 			- If not but execution succeed, return View
 			- If any error is thrown, render by err handling renders
+
+* **Result Render**
+
+	- Json: gson
+		`requestProcessorChain.getResponse().getWriter().write(gson.toJson(jsonData))'`
+	- View:
+		`request.getRequestDispatcher("/templates/" + path).forward(request, response);`
