@@ -1,6 +1,6 @@
 package org.alex.core;
 
-import com.alex.controller.DispatcherServlet;
+import org.alex.mvc.DispatcherServlet;
 import com.alex.controller.frontend.MainPageController;
 import com.alex.service.solo.HeadLineService;
 import com.alex.service.solo.impl.HeadLineServiceImpl;

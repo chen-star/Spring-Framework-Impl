@@ -1,11 +1,10 @@
 com/alex/entity/dto/MainPageInfoDTO.class
+com/alex/service/solo/impl/HeadLineServiceImpl.class
+com/alex/entity/bo/HeadLine.class
 com/alex/service/solo/HeadLineService.class
 com/alex/entity/dto/Result.class
-com/alex/entity/bo/ShopCategory.class
 com/alex/service/combine/HeadLineShopCategoryCombineService.class
-com/alex/entity/bo/HeadLine.class
-com/alex/service/solo/ShopCategoryService.class
-com/alex/service/solo/impl/ShopCategoryServiceImpl.class
-HelloServlet.class
 com/alex/service/combine/impl/HeadLineShopCategoryCombineServiceImpl.class
-com/alex/service/solo/impl/HeadLineServiceImpl.class
+com/alex/service/solo/ShopCategoryService.class
+com/alex/entity/bo/ShopCategory.class
+com/alex/service/solo/impl/ShopCategoryServiceImpl.class

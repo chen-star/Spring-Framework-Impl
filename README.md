@@ -97,7 +97,7 @@
   	- get instance of this class
  	- use Java reflection to inject filed instance
 
- 	
+---
  	
 ## AOP
 
@@ -185,3 +185,9 @@
 	
 	- `PointcutParser`: parse pointcut
 	- `PointcutExpression`: parse pointcut expression and get actual targets
+
+---
+	
+## Spring MVC
+
+![](./src/main/resources/img/mvc_flow.png)
