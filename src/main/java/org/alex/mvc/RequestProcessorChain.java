@@ -51,7 +51,7 @@ public class RequestProcessorChain {
                 }
             }
         } catch (Exception e) {
-            this.resultRender = new InternalErrorResultRender();
+            this.resultRender = new InternalErrorResultRender(e.getMessage());
             log.error("doRequestProcessorChain error: ", e);
         }
     }
@@ -62,9 +62,11 @@ public class RequestProcessorChain {
      */
     public void doRender() {
         if (this.resultRender == null) {
+            log.info("[RequestProcessorChain - doRender] default response render");
             this.resultRender = new DefaultResultRender();
         }
         try {
+            log.info("[RequestProcessorChain - doRender] {}", this.resultRender);
             this.resultRender.render(this);
         } catch (Exception e) {
             log.error("doRender, error: ", e);

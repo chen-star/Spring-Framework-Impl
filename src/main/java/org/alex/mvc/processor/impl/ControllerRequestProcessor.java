@@ -77,22 +77,21 @@ public class ControllerRequestProcessor implements RequestProcessor {
                     // 3. get params from @RequestParam
                     Map<String, Class<?>> methodParams = new HashMap<>();
                     Parameter[] parameters = method.getParameters();
-                    if (ValidationUtil.isEmpty(parameters)) {
-                        continue;
-                    }
-                    for (Parameter parameter : parameters) {
-                        RequestParam param = parameter.getAnnotation(RequestParam.class);
-                        if (param == null) {
-                            throw new RuntimeException("The parameter must have @RequestParam");
+                    if (!ValidationUtil.isEmpty(parameters)) {
+                        for (Parameter parameter : parameters) {
+                            RequestParam param = parameter.getAnnotation(RequestParam.class);
+                            if (param == null) {
+                                throw new RuntimeException("The parameter must have @RequestParam");
+                            }
+                            methodParams.put(param.value(), parameter.getType());
                         }
-                        methodParams.put(param.value(), parameter.getType());
-
-                        // 4. Wrap as RequestPathInfo & ControllerMethod
-                        String httpMethod = String.valueOf(requestMapping.method());
-                        RequestPathInfo requestPathInfo = new RequestPathInfo(httpMethod, url);
-                        ControllerMethod controllerMethod = new ControllerMethod(requestMappingClazz, method, methodParams);
-                        this.pathInfoControllerMethodMap.put(requestPathInfo, controllerMethod);
                     }
+
+                    // 4. Wrap as RequestPathInfo & ControllerMethod
+                    String httpMethod = String.valueOf(requestMapping.method());
+                    RequestPathInfo requestPathInfo = new RequestPathInfo(httpMethod, url);
+                    ControllerMethod controllerMethod = new ControllerMethod(requestMappingClazz, method, methodParams);
+                    this.pathInfoControllerMethodMap.put(requestPathInfo, controllerMethod);
                 }
             }
         }
@@ -100,6 +99,7 @@ public class ControllerRequestProcessor implements RequestProcessor {
 
     @Override
     public boolean process(RequestProcessorChain requestProcessorChain) throws Exception {
+        log.info("[ControllerRequestProcessor] is processing");
         // 1. Get ControllerMethod by req uri and req method
         String method = requestProcessorChain.getRequestMethod();
         String path = requestProcessorChain.getRequestPath();
@@ -115,7 +115,8 @@ public class ControllerRequestProcessor implements RequestProcessor {
         // 3. delegate to render for response handling
         setResultRender(result, controllerMethod, requestProcessorChain);
 
-        return false;
+        log.info("[ControllerRequestProcessor] is done processing");
+        return true;
     }
 
     private Object invokeControllerMethod(ControllerMethod controllerMethod, HttpServletRequest request) {
@@ -150,7 +151,6 @@ public class ControllerRequestProcessor implements RequestProcessor {
         methodToInvoke.setAccessible(true);
         Object result;
         try {
-
             if (methodParams.isEmpty()) {
                 result = methodToInvoke.invoke(controller);
             } else {
@@ -159,6 +159,8 @@ public class ControllerRequestProcessor implements RequestProcessor {
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e.getTargetException());
         } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -172,10 +174,12 @@ public class ControllerRequestProcessor implements RequestProcessor {
         }
 
         ResultRender resultRender;
-        boolean isJson;
-        if (isJson = controllerMethod.getInvokeMethod().isAnnotationPresent(ResponseBody.class)) {
+        boolean isJson = controllerMethod.getInvokeMethod().isAnnotationPresent(ResponseBody.class);
+        if (isJson) {
+            log.info("Json Result Render is chosen by controller request processor");
             resultRender = new JsonResultRender(result);
         } else {
+            log.info("View Result Render is chosen by controller request processor");
             resultRender = new ViewResultRender(result);
         }
 

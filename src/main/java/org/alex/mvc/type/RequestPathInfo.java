@@ -2,6 +2,7 @@ package org.alex.mvc.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -12,8 +13,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class RequestPathInfo {
 
+    @EqualsAndHashCode.Include
     private String httpMethod;
+
+    @EqualsAndHashCode.Include
     private String httpPath;
 }

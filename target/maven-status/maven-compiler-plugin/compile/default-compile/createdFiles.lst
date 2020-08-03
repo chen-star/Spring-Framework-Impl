@@ -1,8 +1,10 @@
 com/alex/entity/dto/MainPageInfoDTO.class
 com/alex/service/solo/impl/HeadLineServiceImpl.class
+org/alex/util/ConverterUtil.class
 com/alex/entity/bo/HeadLine.class
 com/alex/service/solo/HeadLineService.class
 com/alex/entity/dto/Result.class
+org/alex/mvc/type/ModelAndView.class
 com/alex/service/combine/HeadLineShopCategoryCombineService.class
 com/alex/service/combine/impl/HeadLineShopCategoryCombineServiceImpl.class
 com/alex/service/solo/ShopCategoryService.class

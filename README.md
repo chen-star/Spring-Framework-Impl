@@ -190,7 +190,15 @@
 	
 ## Spring MVC
 
+|  Annotation 		| 		Status 		| 
+:------------ 		| :--------------   | 
+| @RequestMapping	| :heavy_check_mark:|
+| @RequestParam		| :heavy_check_mark:|
+| @ResponseBody 		| :heavy_check_mark:|
+
+
 ![](./src/main/resources/img/mvc_flow.png)
+
 
 * **Request Processor**
 	
@@ -204,3 +212,6 @@
 		- Mapping request to corresponding controller and handler method.
 		- Parse request params, and assign to controller method accordingly.
 		- Select Response Render
+			- If annotated with `@ResponseBody`, return raw JSON
+			- If not but execution succeed, return View
+			- If any error is thrown, render by err handling renders

@@ -25,7 +25,7 @@ public class JspRequestProcessor implements RequestProcessor {
         if (this.jspDispatcher == null) {
             throw new RuntimeException("There is no jsp servlet");
         }
-        log.info("The default servlet for static resource is {}", JSP_SERVLET);
+        log.info("The default servlet for jsp resource is {}", JSP_SERVLET);
     }
 
 
