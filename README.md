@@ -191,3 +191,16 @@
 ## Spring MVC
 
 ![](./src/main/resources/img/mvc_flow.png)
+
+* **Request Processor**
+	
+	- Pre: encoding & path trimming
+	
+	- Static: resource under *webapp/static/*
+
+	- Jsp: resource under *webapp/templates/*
+	
+	- Controller:
+		- Mapping request to corresponding controller and handler method.
+		- Parse request params, and assign to controller method accordingly.
+		- Select Response Render
