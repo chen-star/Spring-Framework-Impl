@@ -15,7 +15,7 @@
 
 ---
 
-
+![](./src/main/resources/img/architecture.png)
 
 ## IOC & DI
 
