@@ -17,6 +17,34 @@
 
 ![](./src/main/resources/img/architecture.png)
 
+## Design Patterns in Spring
+
+* **Singleton**
+	
+	1 instance of an object per container.
+	
+	By default, Spring creates all beans as singletons.
+	
+	Can be configed by @Scope(...)
+	
+* **Factory Method**
+
+	Spring treats a bean container as a factory that produces beans.
+	
+	Each of the getBean methods is considered a factory method.
+	
+* **Template**
+
+	Eg. JDBC template
+	
+	When executing a query on a database, the same series of steps must be completed:
+	
+		1. Establish a connection
+		2. Execute query
+		3. Perform cleanup
+		4. Close the connection
+	
+
 ## IOC & DI
 
 ### Bean Container & Management
@@ -168,7 +196,7 @@
 				4. After the action, proxy obj delegate the call to proxyed obj.
 	
 	
-	* CGLIB Dynamic Proxying (based on Extension)
+	* CGLIB Dynamic Proxying (based on Extends)
 		
 		- Code Generation Lib
 		- Proxyed Impl classes dont have to implement interface
